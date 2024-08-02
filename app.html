@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITD Generator</title>
+    <link rel="icon" type="image/x-icon" href="./img/favicon.png">
+    <link href="./node/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./node/bootstrap-icons/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <script src="./node/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./node/jquery/dist/jquery.min.js"></script>
+    <script src="./app.js"></script>
+
+    <nav class="navbar bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="./app.html">
+                <img src="./img/logo.png" alt="Logo" height="32px" class="d-inline-block align-text-top">
+                - ITD Generator
+            </a>
+        </div>
+    </nav>
+
+    <div id="formGenerateITD" class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="card my-5">
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <div class="form-text">
+                                    Unggah file JSON yang telah diekspor dari Smile-iB dan klik tombol Generate ITD
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input onchange="formValidation()" id="jsonFile" class="form-control" type="file">
+                                <script>
+                                    function formValidation() {
+                                        const jsonFile = document.getElementById("jsonFile");
+                                        const showResult = document.getElementById("generate");
+                                        if (jsonFile.value.length > 0) {
+                                            showResult.removeAttribute("disabled");
+                                        } else {
+                                            showResult.setAttribute("disabled", true);
+                                        }
+                                    }
+                                </script>
+                            </div>
+                            <div class="d-grid">
+                                <button id="generate" type="button" onclick="generateITD()" class="btn btn-primary" disabled>
+                                    Generate ITD
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+
+    <div id="result" class="container">
+        <div class="text-center fw-bold">
+            KONFIRMASI HASIL PEMERIKSAAN
+            <br><i>(ITEM TO BE DISCUSSED)</i>
+            <br>KANTOR CABANG SOLO - TAHUN 2024
+            <hr>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle table-bordered">
+                <thead class="table-dark align-middle text-center">
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Fakta dan Temuan</th>
+                        <th scope="col">Risiko</th>
+                        <th scope="col">Tanggapan</th>
+                        <th scope="col">Unit Kerja</th>
+                    </tr>
+                </thead>
+                <tbody id="resultBody" class="text-center" style="font-size: small;">
+                    <!--to be inflated by app.js-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
